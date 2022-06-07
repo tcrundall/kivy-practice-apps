@@ -1,0 +1,36 @@
+#
+
+WindowManager:
+    FirstWindow:
+    SecondWindow:
+
+
+<FirstWindow>:
+    name: "first"
+    BoxLayout:
+        orientation: "vertical"
+        size: root.width, root.height
+
+        Label:
+            text: "First Screen"
+            font_size: 32
+        Button:
+            text: "Next Screen"
+            font_size: 32
+            on_release: 
+                root.manager.transition.direction = "left"
+                app.root.current = "second"
+
+<SecondWindow>:
+    name: "second"
+    BoxLayout:
+        orientation: "horizontal"
+        Label:
+            text: "First Screen"
+            font_size: 32
+        Button:
+            text: "Go back"
+            font_size: 32
+            on_release: 
+                root.manager.transition.direction = "right"
+                app.root.current = "first"
