@@ -1,10 +1,10 @@
 [app]
 
 # (str) Title of your application
-title = Plotter3
+title = Screen Manager2
 
 # (str) Package name
-package.name = plotter3
+package.name = screenmanager2
 
 # (str) Package domain (needed for android/ios packaging)
 package.domain = org.test
@@ -38,7 +38,7 @@ version = 0.1
 # (list) Application requirements
 # comma separated e.g. requirements = sqlite3,kivy
 # requirements = python3,kivy
-requirements = python3==3.9.12,hostpython3==3.9.12,kivy,kivy.garden.graph,kivy_garden.graph
+requirements = python3==3.9.12,hostpython3==3.9.12,kivy,pandas,python-gettext,gettext
 
 # (str) Custom source folders for requirements
 # Sets custom source for any requirements with recipes

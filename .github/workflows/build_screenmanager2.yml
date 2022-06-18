@@ -1,4 +1,4 @@
-name: Build Plotter APK
+name: Build ScreenManager2 APK
 on:
   push:
     branches: [ main ]
@@ -6,38 +6,36 @@ on:
 jobs:
 # Build job. Builds app for Android with Buildozer
   build-android:
-    name: Build for Android
+    name: Build ScreenManager2 for Android
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Garden install
-        run: python -m pip install kivy.garden.graph
-
-      - name: Garden install
-        run: pip install kivy.garden.graph
-
-      - name: Garden install
-        run: python -m pip install kivy_garden.graph
-
-      - name: Garden install
-        run: pip install kivy_garden.graph
-
+#       - name: Install build dependencies of pandas?
+#         run: sudo apt-get -y install automake autopoint
+# 
+#       - name: Install build dependencies of pandas?
+#         run: sudo apt-get -y install gettext
+# 
+#       - name: Install build dependencies of pandas?
+#         run: autopoint --force
+# 
+#       - name: Installing pandas
+#         run: python -m pip install pandas 
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
           command: buildozer android debug
-          workdir: plotter
+          workdir: screenmanager2
           buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: plotter
+          name: screen2
           path: ${{ steps.buildozer.outputs.filename }}
-
 
