@@ -19,6 +19,12 @@ jobs:
       - name: Garden install
         run: pip install kivy_garden.graph
 
+      - name: Garden install
+        run: python -m pip install kivy.garden.graph
+
+      - name: Garden install
+        run: pip install kivy.garden.graph
+
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer

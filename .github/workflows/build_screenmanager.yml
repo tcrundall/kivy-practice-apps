@@ -12,7 +12,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - run: echo "🎉 Checkout complete. Now building..."
+
+      - name: Installing pandas
+        run: python -m pip install pandas 
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
@@ -28,14 +30,3 @@ jobs:
           name: package3
           path: ${{ steps.buildozer.outputs.filename }}
 
-      - name: Upload more artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: package1
-          path: ~/bin/*.apk
-
-      - name: Upload more more artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: package2
-          path: ~/screendir/bin/*.apk

@@ -3,7 +3,8 @@ Config.set('graphics', 'width', '393')
 Config.set('graphics', 'height', '830')
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.garden.graph import Graph, LinePlot
+#from kivy.garden.graph import Graph, LinePlot
+from kivy_garden.graph import Graph, LinePlot
 from kivy.properties import NumericProperty
 import numpy as np
 

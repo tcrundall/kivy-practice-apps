@@ -9,6 +9,7 @@ from kivy.app import App
 from kivy.uix.widget import Widget
 from kivy.lang import Builder
 from kivy.uix.screenmanager import ScreenManager, Screen
+import pandas as pd
 
 
 # Define our different screens
