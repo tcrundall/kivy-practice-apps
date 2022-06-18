@@ -1,0 +1,40 @@
+name: Build ScreenManager APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+# Build job. Builds app for Android with Buildozer
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: echo "🎉 Checkout complete. Now building..."
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          workdir: screenmanager
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package1
+          path: ~/bin/*.apk
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package2
+          path: ~/screendir/bin/*.apk
+
+      - name: Upload more artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package3
+          path: ${{ steps.buildozer.outputs.filename }}
