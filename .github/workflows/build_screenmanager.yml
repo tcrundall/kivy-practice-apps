@@ -18,23 +18,24 @@ jobs:
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
-          workdir: ~/screenmanager
+          command: buildozer android debug
+          workdir: screenmanager
           buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: package1
-          path: ~/bin/*.apk
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: package2
-          path: ~/screendir/bin/*.apk
+          name: package3
+          path: ${{ steps.buildozer.outputs.filename }}
 
       - name: Upload more artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: package3
-          path: ${{ steps.buildozer.outputs.filename }}
+          name: package1
+          path: ~/bin/*.apk
+
+      - name: Upload more more artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package2
+          path: ~/screendir/bin/*.apk
