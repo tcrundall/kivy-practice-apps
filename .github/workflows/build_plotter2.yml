@@ -1,0 +1,36 @@
+name: Build Plotter APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+# Build job. Builds app for Android with Buildozer
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - run: echo "🎉 Checkout complete. Now building..."
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          workdir: plotter2
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package1
+          path: ${{ steps.buildozer.outputs.filename }}
+
+      - name: Upload more artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: package2
+          path: ~/bin/*.apk
+
