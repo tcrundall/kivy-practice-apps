@@ -1,4 +1,4 @@
-name: Build Plotter2 APK
+name: Build Plotter3 APK
 on:
   push:
     branches: [ main ]
@@ -13,29 +13,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Garden install
-        run: python -m pip install kivy_garden.graph
-
-      - name: Garden install
-        run: pip install kivy_garden.graph
-
-      - name: Garden install
-        run: python -m pip install kivy.garden.graph
-
-      - name: Garden install
-        run: pip install kivy.garden.graph
+#       - name: Garden install
+#         run: python -m pip install kivy.garden.graph
+# 
+#       - name: Garden install
+#         run: pip install kivy.garden.graph
+# 
+#       - name: Garden install
+#         run: python -m pip install kivy_garden.graph
+# 
+#       - name: Garden install
+#         run: pip install kivy_garden.graph
+# 
 
       - name: Build with Buildozer
         uses: ArtemSBulgakov/buildozer-action@v1
         id: buildozer
         with:
           command: buildozer android debug
-          workdir: plotter2
+          workdir: plotter3
           buildozer_version: stable
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v2
         with:
-          name: plotter2
+          name: plotter3
           path: ${{ steps.buildozer.outputs.filename }}
+
 
