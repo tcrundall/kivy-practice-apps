@@ -6,7 +6,7 @@ from kivy.uix.boxlayout import BoxLayout
 #from kivy.garden.graph import Graph, LinePlot
 from kivy_garden.graph import Graph, LinePlot
 from kivy.properties import NumericProperty
-import numpy as np
+# import numpy as np    # <--- removed numpy cause it doubles build time
 
 
 class PlotApp(App):
@@ -36,15 +36,19 @@ class Plotter(BoxLayout):
                            )
         self.ids.graph.add_widget(self.graph)
 
-        self.plot_x = np.linspace(0, 1, self.samples)
-        self.plot_y = np.sin(2 * np.pi * 2 * self.plot_x)
+        step = 1./self.samples
+        self.plot_x = [n * step for n in range(self.samples)]
+        self.plot_y = [x for x in self.plot_x]
+
+        # self.plot_x = np.linspace(0, 1, self.samples)
+        # self.plot_y = np.sin(2 * np.pi * 2 * self.plot_x)
         self.plot = LinePlot(color=[1, 1, 0, 1], line_width=1.5)
         self.plot.points = [(x, self.plot_y[x]) for x in range(self.samples)]
 
         self.graph.add_plot(self.plot)
 
     def update_plot(self, freq):
-        self.plot_y = np.sin(2 * np.pi * freq * self.plot_x)
+        self.plot_y = [x**freq for x in self.plot_x]
         self.plot.points = [(x, self.plot_y[x]) for x in range(self.samples)]
 
     def update_zoom(self, value):

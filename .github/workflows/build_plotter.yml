@@ -1,0 +1,43 @@
+name: Build Plotter APK
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+# Build job. Builds app for Android with Buildozer
+  build-android:
+    name: Build for Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Garden install
+        run: python -m pip install kivy.garden.graph
+
+      - name: Garden install
+        run: pip install kivy.garden.graph
+
+      - name: Garden install
+        run: python -m pip install kivy_garden.graph
+
+      - name: Garden install
+        run: pip install kivy_garden.graph
+
+
+      - name: Build with Buildozer
+        uses: ArtemSBulgakov/buildozer-action@v1
+        id: buildozer
+        with:
+          command: buildozer android debug
+          workdir: plotter
+          buildozer_version: stable
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: plotter
+          path: ${{ steps.buildozer.outputs.filename }}
+
+
